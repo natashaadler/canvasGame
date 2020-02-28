@@ -1,3 +1,5 @@
+//in class is line 88 to 102 and 152 to 166 just added audio to the gun and the kill
+
 (() => {
   // stub
   console.log('game stuff ready!');
@@ -84,7 +86,18 @@
             }
 
             // create and play explosion sound
-            
+            let audio = document.createElement('audio')
+            audio.src = "audio/explode.mp3";
+
+            //here to clean up code
+            audio.addEventListener("ended", function(){
+              document.body.removeChild(audio)
+            })
+
+            document.body.appendChild(audio);
+
+            audio.play();
+
           }
         });
 
@@ -123,7 +136,7 @@
       window.requestAnimationFrame(draw);
   }
 
-  
+
   function createBullet() {
     // create / draw a bullet and push it into the bullet array
     let newBullet = {
@@ -137,7 +150,19 @@
     bullets.push(newBullet);
 
     // create and play cheesy laser sound
-    
+    //bellow is bassically like <audio> </audio>
+    let audio = document.createElement('audio')
+    audio.src = "audio/laser.mp3";
+
+    //add an event handler for whe the audio track is finished -once the audio is done playing it removes itself
+    audio.addEventListener("ended", function(){
+      document.body.removeChild(audio)
+    })
+
+    document.body.appendChild(audio);
+
+    audio.play();
+
   }
 
   function movePlayer(e) {
